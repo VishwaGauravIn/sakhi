@@ -14,3 +14,11 @@ export default function ToastWrapper() {
     />
   );
 }
+
+// Sample
+
+{
+  /* <Button onClick={() => enqueueSnackbar("That was easy!")}>
+  Hello World! Click me for toast
+</Button>; */
+}
