@@ -1,7 +1,9 @@
-"use client";
+import { authOptions } from "@/lib/auth";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
-import { SessionProvider } from "next-auth/react";
-
-export default function RootLayout({ children }) {
-  return <SessionProvider>{children}</SessionProvider>;
+export default async function RootLayout({ children }) {
+  const auth = await getServerSession(authOptions);
+  const isLoggedIn = auth?.user?.name;
+  return isLoggedIn ? children : redirect("/login");
 }
