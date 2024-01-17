@@ -11,7 +11,7 @@ const dancingScript = Dancing_Script({ subsets: ["latin"] });
 export default function HeaderNav() {
   return (
     <SessionProvider>
-      <nav className="p-2 sticky top-0 z-10 bg-white h-20 ring flex items-center justify-between">
+      <nav className="p-2 sticky top-0 z-10 bg-white h-20 flex items-center justify-between">
         <p
           className={`flex text-4xl gap-1 tracking-wider items-center font-extrabold text-pink-400 ${dancingScript.className} `}
         >
