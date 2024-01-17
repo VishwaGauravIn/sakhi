@@ -13,7 +13,7 @@ export default function NavBar() {
   };
 
   return (
-    <div className="absolute w-full bottom-0 h-20 flex gap-1 overflow-hidden">
+    <div className="fixed w-full bottom-0 left-0 h-20 flex gap-1 overflow-hidden">
       {navItems.map((item) => (
         <NavItem
           key={item.id}
@@ -29,10 +29,10 @@ export default function NavBar() {
 }
 
 const navItems = [
-  { id: 0, icon: <FiHome />, label: "Dashboard", href: "/" },
-  { id: 1, icon: <FiCalendar />, label: "Period Tracker", href: "/" },
-  { id: 2, icon: <FiBookOpen />, label: "Jornal", href: "/" },
-  { id: 3, icon: <HiOutlineUserGroup />, label: "Social", href: "/" },
+  { id: 0, icon: <FiHome />, label: "Dashboard", href: "/dashboard" },
+  { id: 1, icon: <FiCalendar />, label: "Period Tracker", href: "/tracker" },
+  { id: 2, icon: <FiBookOpen />, label: "Jornal", href: "/journal" },
+  { id: 3, icon: <HiOutlineUserGroup />, label: "Social", href: "/social" },
 ];
 
 const NavItem = ({ id, icon, label, active, onClick }) => (
