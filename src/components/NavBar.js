@@ -1,10 +1,9 @@
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React from "react";
 import { FiHome, FiCalendar, FiBookOpen } from "react-icons/fi";
 import { HiOutlineUserGroup } from "react-icons/hi2";
 
-export default function NavBar() {
-  const [active, setActive] = useState(0);
+export default function NavBar({ active, setActive }) {
   const router = useRouter();
 
   const handleClick = (id) => {
