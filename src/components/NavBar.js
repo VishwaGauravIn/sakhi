@@ -9,7 +9,7 @@ export default function NavBar() {
 
   const handleClick = (id) => {
     setActive(id);
-    // router.push(id);
+    router.push(navItems[id].href);
   };
 
   return (
@@ -29,10 +29,10 @@ export default function NavBar() {
 }
 
 const navItems = [
-  { id: 0, icon: <FiHome />, label: "Dashboard" },
-  { id: 1, icon: <FiCalendar />, label: "Period Tracker" },
-  { id: 2, icon: <FiBookOpen />, label: "Jornal" },
-  { id: 3, icon: <HiOutlineUserGroup />, label: "Social" },
+  { id: 0, icon: <FiHome />, label: "Dashboard", href: "/" },
+  { id: 1, icon: <FiCalendar />, label: "Period Tracker", href: "/" },
+  { id: 2, icon: <FiBookOpen />, label: "Jornal", href: "/" },
+  { id: 3, icon: <HiOutlineUserGroup />, label: "Social", href: "/" },
 ];
 
 const NavItem = ({ id, icon, label, active, onClick }) => (
