@@ -1,8 +1,9 @@
 "use client";
 
 import NavBar from "@/components/NavBar";
+import { SessionProvider } from "next-auth/react";
 import { usePathname } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function ProtectedContainer({ children }) {
   const pathname = usePathname();
@@ -19,12 +20,18 @@ export default function ProtectedContainer({ children }) {
       case "/social":
         return 3;
       default:
-        return 0;
+        return -1;
     }
   }
+
+  useEffect(() => {
+    setActive(getActive());
+  }, [pathname]);
   return (
-    <div className="flex flex-col min-h-screen w-full relative pb-20">
-      {children} <NavBar active={active} setActive={setActive} />
-    </div>
+    <SessionProvider>
+      <div className="flex flex-col w-full relative pb-20">
+        {children} <NavBar active={active} setActive={setActive} />
+      </div>
+    </SessionProvider>
   );
 }
