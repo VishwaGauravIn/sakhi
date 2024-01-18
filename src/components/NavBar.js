@@ -12,7 +12,7 @@ export default function NavBar({ active, setActive }) {
   };
 
   return (
-    <div className="fixed w-full bottom-0 left-0 h-20 flex gap-1 overflow-hidden">
+    <div className="fixed w-full bottom-0 left-0 h-16 flex gap-1 overflow-hidden">
       {navItems.map((item) => (
         <NavItem
           key={item.id}
@@ -42,7 +42,7 @@ const NavItem = ({ id, icon, label, active, onClick }) => (
     onClick={() => onClick(id)}
   >
     {React.cloneElement(icon, {
-      className: `h-8 w-8 transition-all ease-in-out ${
+      className: `h-7 w-7 transition-all ease-in-out ${
         active === id ? "stroke-pink-400 scale-110" : "stroke-slate-700"
       }`,
     })}

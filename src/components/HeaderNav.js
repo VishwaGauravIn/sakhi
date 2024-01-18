@@ -1,22 +1,18 @@
 "use client";
 
 import { SessionProvider, useSession } from "next-auth/react";
-import { Dancing_Script } from "next/font/google";
 import Link from "next/link";
 import React from "react";
 import { RiHeart2Line } from "react-icons/ri";
-
-const dancingScript = Dancing_Script({ subsets: ["latin"] });
 
 export default function HeaderNav() {
   return (
     <SessionProvider>
       <nav className="p-2 sticky top-0 z-10 bg-white h-20 flex items-center justify-between">
         <p
-          className={`flex text-4xl gap-1 tracking-wider items-center font-extrabold text-pink-400 ${dancingScript.className} `}
+          className={`flex text-4xl gap-1 items-center text-pink-400 `}
         >
           <RiHeart2Line className="text-5xl" />
-          Sakhi
         </p>
         <UserComponent />
       </nav>
