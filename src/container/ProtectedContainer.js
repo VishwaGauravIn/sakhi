@@ -29,7 +29,7 @@ export default function ProtectedContainer({ children }) {
   }, [pathname]);
   return (
     <SessionProvider>
-      <div className="flex flex-col w-full relative pb-20">
+      <div className="flex flex-col w-full relative p-2 pb-20">
         {children} <NavBar active={active} setActive={setActive} />
       </div>
     </SessionProvider>

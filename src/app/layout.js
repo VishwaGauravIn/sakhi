@@ -1,9 +1,10 @@
-import { Inter } from "next/font/google";
+import { Exo_2, Inter } from "next/font/google";
 import "./globals.css";
 import ToastWrapper from "@/wrapper/ToastWrapper";
 import HeaderNav from "@/components/HeaderNav";
 
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
+const exo2 = Exo_2({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Sakhi: Wellness Friend",
@@ -25,7 +26,7 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="icon" href="/favicon.ico" />
       </head>
-      <body className={inter.className}>
+      <body className={exo2.className}>
         <HeaderNav />
         {children}
       </body>
