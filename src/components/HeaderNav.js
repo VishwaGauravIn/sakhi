@@ -6,6 +6,7 @@ import React from "react";
 import { RiHeart2Line } from "react-icons/ri";
 import { MdOutlineSos } from "react-icons/md";
 import { IoIosWarning } from "react-icons/io";
+import { Button } from "./ui/button";
 
 export default function HeaderNav() {
   return (
@@ -15,12 +16,13 @@ export default function HeaderNav() {
           <RiHeart2Line className="text-5xl heartbeat" />
         </p>
         <div className="flex justify-center items-center gap-4">
-          <button className=" py-1 px-4 text-4xl text-red-50 ring-2 ring-red-400 rounded-full bg-[#E04759]">
-            <span className="flex gap-1 justify-center items-center">
-              <IoIosWarning className="text-xl" />
-              <MdOutlineSos className="" />
-            </span>
-          </button>
+          <Button
+            variant="destructive"
+            className="flex gap-1 justify-center items-center py-1 px-4 text-4xl text-red-50 ring-2 ring-red-400 rounded-full bg-[#E04759]"
+          >
+            <IoIosWarning className="text-xl" />
+            <MdOutlineSos className="" />
+          </Button>
           <UserComponent />
         </div>
       </nav>
