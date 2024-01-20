@@ -4,17 +4,25 @@ import { SessionProvider, useSession } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
 import { RiHeart2Line } from "react-icons/ri";
+import { MdOutlineSos } from "react-icons/md";
+import { IoIosWarning } from "react-icons/io";
 
 export default function HeaderNav() {
   return (
     <SessionProvider>
       <nav className="p-2 sticky top-0 z-10 bg-white h-20 flex items-center justify-between">
-        <p
-          className={`flex text-4xl gap-1 items-center text-pink-400 `}
-        >
-          <RiHeart2Line className="text-5xl" />
+        <p className={`flex text-4xl gap-1 items-center text-pink-400 `}>
+          <RiHeart2Line className="text-5xl heartbeat" />
         </p>
-        <UserComponent />
+        <div className="flex justify-center items-center gap-4">
+          <button className=" py-1 px-4 text-4xl text-red-50 ring-2 ring-red-400 rounded-full bg-[#E04759]">
+            <span className="flex gap-1 justify-center items-center">
+              <IoIosWarning className="text-xl" />
+              <MdOutlineSos className="" />
+            </span>
+          </button>
+          <UserComponent />
+        </div>
       </nav>
     </SessionProvider>
   );
