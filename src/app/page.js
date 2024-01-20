@@ -1,6 +1,5 @@
 "use client";
 
-import NavBar from "@/components/NavBar";
 import { toast } from "@/components/ui/Toast";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -11,9 +10,13 @@ export default function Home() {
     <div>
       <Button onClick={() => toast.success("Hello World! Click me for toast")}>
         Hello World! Click me for toast
-      </Button><br/>
-      <Link href="/login">Login</Link><br/>
+      </Button>
+      <br />
+      <Link href="/login">Login</Link>
+      <br />
       <Link href="/dashboard">Dashboard</Link>
+
+      <button onClick={() => getData()}>click</button>
     </div>
   );
 }
