@@ -1,9 +1,8 @@
-'use client';
-
 import PostUI from '@/components/social/PostUI';
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import Learn from '@/components/social/Learn';
 
 export default function Social() {
   return (
@@ -23,12 +22,20 @@ export default function Social() {
         </TabsTrigger>
       </TabsList>
       <TabsContent value='forYou'>
+        
+        {/* Post UI compoentns mapping posts dynanmically */}
         <PostUI />
         <PostUI />
         <PostUI />
         <PostUI />
+
       </TabsContent>
-      <TabsContent value='learn'>Learn Here</TabsContent>
+      <TabsContent value='learn'>
+
+        {/* Differnet learning techniques links */}
+        <Learn />
+
+      </TabsContent>
     </Tabs>
   );
 }
