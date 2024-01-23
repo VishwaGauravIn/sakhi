@@ -3,59 +3,32 @@
 import PostUI from '@/components/social/PostUI';
 import React, { useState } from 'react';
 
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+
 export default function Social() {
-  const [selectedType, setSelectedType] = useState('forYou');
-  const tabs = [
-    {
-      name: 'For You',
-      type: 'forYou',
-    },
-    {
-      name: 'Learn',
-      type: 'learn',
-    },
-  ];
-
   return (
-    <div>
-      <div className='grid grid-cols-2 gap-2 font-semibold'>
-        {/* Tabs */}
-        {tabs.map((tab, index) => (
-          <div
-            key={index}
-            className={`outline-none p-2 cursor-pointer w-full text-center bg-transparent border-b-2 transition-all ${
-              selectedType === tab.type
-                ? 'border-b-pink-400 text-pink-600'
-                : 'border-b-gray-100'
-            }`}
-            onClick={() => setSelectedType(tab.type)}
-          >
-            {tab.name}
-          </div>
-        ))}
-      </div>
-
-      {/* For You Tab Content */}
-
-      {selectedType === 'forYou' && (
-        <div>
-          <PostUI />
-          <PostUI />
-          <PostUI />
-          <PostUI />
-          <PostUI />
-          <PostUI />
-        </div>
-      )}
-
-      {/* Learn Tab Content */}
-
-      {selectedType === 'learn' && (
-        <div>
-          Learn Here
-        </div>
-      )}
-
-    </div>
+    <Tabs defaultValue='forYou' className='w-full'>
+      <TabsList className='w-full bg-transparent'>
+        <TabsTrigger
+          value='forYou'
+          className='w-full border-b-2 data-[state=active]:border-b-pink-400 data-[state=active]:text-pink-600 data-[state=active]:shadow-none font-semibold'
+        >
+          For You
+        </TabsTrigger>
+        <TabsTrigger
+          value='learn'
+          className='w-full border-b-2 data-[state=active]:border-b-pink-400 data-[state=active]:text-pink-600 data-[state=active]:shadow-none font-semibold'
+        >
+          Learn
+        </TabsTrigger>
+      </TabsList>
+      <TabsContent value='forYou'>
+        <PostUI />
+        <PostUI />
+        <PostUI />
+        <PostUI />
+      </TabsContent>
+      <TabsContent value='learn'>Learn Here</TabsContent>
+    </Tabs>
   );
 }
