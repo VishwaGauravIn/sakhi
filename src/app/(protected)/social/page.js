@@ -30,12 +30,12 @@ export default function Social() {
       <TabsContent value='forYou'> 
 
         {/* Create Post Button */}
-        <Button
+        <button
           variant='primary'
-          className='fixed bottom-20 left-1/2 -translate-x-1/2 z-10 flex gap-1 justify-center items-center py-1 px-4 text-lg text-pink-950 ring-2 ring-pink-50 bg-pink-100/80 backdrop-blur-lg rounded-full'
+          className='fixed bottom-20 left-1/2 -translate-x-1/2 z-10 flex gap-1 justify-center items-center py-2 px-6 text-lg text-slate-700 border-2 bg-white rounded-full'
         >
           <HiOutlinePlusCircle size={24} /> Post
-        </Button>
+        </button>
 
         {/* Post UI compoentns mapping posts dynanmically */}
         <PostUI />
