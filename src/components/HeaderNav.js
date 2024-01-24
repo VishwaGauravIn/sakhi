@@ -11,16 +11,16 @@ import { Button } from "./ui/button";
 export default function HeaderNav() {
   return (
     <SessionProvider>
-      <nav className="p-2 sticky top-0 z-10 bg-white h-20 flex items-center justify-between">
+      <nav className="p-2 sticky top-0 z-10 bg-white h-16 flex items-center justify-between">
         <p className={`flex text-4xl gap-1 items-center text-pink-400 `}>
           <RiHeart2Line className="text-5xl heartbeat" />
         </p>
         <div className="flex justify-center items-center gap-4">
           <Button
             variant="destructive"
-            className="flex gap-1 justify-center items-center py-1 px-4 text-4xl text-red-50 ring-2 ring-red-400 rounded-full bg-[#E04759]"
+            className="flex gap-1 justify-center items-center py-1 px-4 text-3xl text-red-50 ring-2 ring-red-400 rounded-full bg-[#E04759]"
           >
-            <IoIosWarning className="text-xl" />
+            <IoIosWarning className="text-lg" />
             <MdOutlineSos className="" />
           </Button>
           <UserComponent />
