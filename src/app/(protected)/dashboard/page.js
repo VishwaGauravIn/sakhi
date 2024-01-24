@@ -50,12 +50,14 @@ export default function Dashboard() {
   ];
 
   return (
-    <div>
-      <Greeting userFirstName={userFirstName} />
-      <hr className="w-full" />
+    <div className="relative">
+      <div className="sticky top-16 bg-white z-10">
+        <Greeting userFirstName={userFirstName} />
+        <hr className="w-full opacity-20" />
+      </div>
       {/* wwyltdt hero */}
-      <div className="flex my-4 sticky top-20 bg-white">
-        <div className="w-6/12 text-center flex flex-col justify-center items-center text-lg font-bold translate-x-8 text-[#DB6542]">
+      <div className="flex my-4">
+        <div className="w-6/12 text-center flex flex-col justify-center items-center text-base font-semibold translate-x-8 text-[#DB6542]">
           What Would You Like
           <span className="text-[#389F8A]">to do Today?</span>
         </div>
