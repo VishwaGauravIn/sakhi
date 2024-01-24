@@ -86,9 +86,8 @@ export default function Journal() {
           
           {/* Mapping notes array giving icons and color based on mood of each object */}
           {notes.map((note, index) => (
-            <Link href={'#'}>
+            <Link href={'#'} key={index}>
               <div
-                key={index}
                 className={`min-w-[40%] aspect-square rounded-md flex flex-col justify-between items-start p-2 shadow-md gap-1 bg-gradient-to-br from-${getMoodBasedColor(note.mood)}-100 to-${getMoodBasedColor(note.mood)}-200 text-${getMoodBasedColor(note.mood)}-950`}>
 
                 {React.createElement(getMoodBasedEmoji(note.mood), {
