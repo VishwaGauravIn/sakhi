@@ -3,26 +3,47 @@ import React from 'react';
 import { MdSportsMartialArts } from 'react-icons/md';
 import { LiaPepperHotSolid } from 'react-icons/lia';
 import { FaSwatchbook } from 'react-icons/fa6';
-import { Button } from '../ui/button';
+
+import Link from 'next/link';
 
 const Learn = () => {
+  const menuItems = [
+    {
+      color: 'amber',
+      label: 'Martial Arts',
+      href: '#',
+      icon: MdSportsMartialArts,
+    },
+    {
+      color: 'rose',
+      label: 'Pepper Spray',
+      href: '#',
+      icon: LiaPepperHotSolid,
+    },
+    { color: 'green', label: 'Resources', href: '#', icon: FaSwatchbook },
+  ];
+
+  function GridElement({ key, data }) {
+    return (
+      <Link href={data.href}>
+        <div
+          key={key}
+          className={`w-full aspect-square rounded-md flex flex-col justify-center items-center shadow-md gap-1 bg-gradient-to-br from-${data.color}-100 to-${data.color}-200 text-${data.color}-950`}
+        >
+          {React.createElement(data.icon, {
+            className: `w-1/2 h-1/3 fill-${data.color}-900`,
+          })}
+          <span className='font-semibold'>{data.label}</span>
+        </div>
+      </Link>
+    );
+  }
+
   return (
-    <div className='grid grid-cols-2 gap-4'>
-
-    {/* Note: this button can be furthur changed into next Link by importing buaatonVariabts from ui/button while uisng same classes REF: shadcn docs */}
-
-      <Button className='flex flex-col flex-wrap rounded-md gap-2 h-full justify-center items-center px-4 py-8 text-xl text-blue-950 ring-2 ring-blue-100 bg-blue-200 hover:bg-blue-200'>
-        <MdSportsMartialArts size={48} /> Martial Arts
-      </Button>
-
-      <Button className='flex flex-col flex-wrap rounded-md gap-2 h-full justify-center items-center px-4 py-8 text-xl text-red-950 ring-2 ring-red-100 bg-red-200 hover:bg-red-200'>
-        <LiaPepperHotSolid size={48} /> Pepper Spray
-      </Button>
-
-      <Button className='flex flex-col flex-wrap rounded-md gap-2 h-full justify-center items-center px-4 py-8 text-xl text-amber-950 ring-2 ring-amber-100 bg-amber-200 hover:bg-amber-200'>
-        <FaSwatchbook size={48} /> Resources
-      </Button>
-
+    <div className='grid grid-cols-3 gap-4'>
+      {menuItems.map((item) => (
+        <GridElement key={item.label} data={item} />
+      ))}
     </div>
   );
 };
