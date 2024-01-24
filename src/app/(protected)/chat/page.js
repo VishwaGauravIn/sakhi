@@ -36,7 +36,12 @@ export default function Chat() {
             />
           </div>
         </form>
-        <button className="rounded-full" size="icon" variant="ghost">
+        <button
+          type="submit"
+          className="rounded-full"
+          size="icon"
+          variant="ghost"
+        >
           <SendIcon className="w-6 h-6 stroke-pink-500" />
           <span className="sr-only">Send message</span>
         </button>
