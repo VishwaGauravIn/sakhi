@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "app.itsvg.sakhi",
+        "sha256_cert_fingerprints": ["A9:BD:C1:74:86:52:23:A0:9C:BF:E3:A0:D2:BD:F5:8B:FD:FF:D5:E8:E5:FE:61:FF:8E:39:AA:D2:86:20:79:3B"]
+      }
+    }]
