@@ -74,7 +74,6 @@ export default function Dashboard() {
           <GridElement key={item.label} data={item} />
         ))}
       </div>
-      dashboard
     </div>
   );
 }
