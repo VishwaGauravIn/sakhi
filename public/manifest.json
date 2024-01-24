@@ -37,17 +37,20 @@
     {
       "name": "Menstrual Tracker",
       "short_name": "Tracker",
-      "url": "/tracker"
+      "url": "/tracker",
+      "icons": [{ "src": "/logo.png", "sizes": "192x192" }]
     },
     {
       "name": "Journal",
       "short_name": "Journal",
-      "url": "/joaurnal"
+      "url": "/journal",
+      "icons": [{ "src": "/logo.png", "sizes": "192x192" }]
     },
     {
       "name": "Community",
       "short_name": "Community",
-      "url": "/social"
+      "url": "/social",
+      "icons": [{ "src": "/logo.png", "sizes": "192x192" }]
     }
   ],
   "splash_screen": null
