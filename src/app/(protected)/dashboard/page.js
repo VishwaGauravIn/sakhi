@@ -31,7 +31,7 @@ export default function Dashboard() {
     {
       color: "sky",
       label: "Sakhi Bot",
-      href: "/",
+      href: "/chat",
       icon: HiChatBubbleBottomCenterText,
     },
     {
