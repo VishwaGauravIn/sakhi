@@ -24,9 +24,14 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/favicon.ico" />
         <link rel="manifest" href="/manifest.json" />
       </head>
-      <body className={exo2.className}>
+      <body className={exo2.className + " sm:overflow-hidden"}>
         <HeaderNav />
         {children}
+
+        {/* TODO: TEMP */}
+        <div className="fixed top-0 left-0 right-0 bottom-0 z-[99999] bg-white hidden sm:flex justify-center items-center">
+          Display Size not allowed
+        </div>
       </body>
       <ToastWrapper />
     </html>
