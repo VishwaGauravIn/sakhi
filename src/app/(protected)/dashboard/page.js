@@ -85,7 +85,7 @@ function GridElement({ key, data }) {
     <Link href={data.href}>
       <div
         key={key}
-        className={`w-full aspect-square rounded-md flex flex-col justify-center items-center shadow-lg gap-1 bg-gradient-to-br from-${data.color}-100 to-${data.color}-200 text-${data.color}-950`}
+        className={`w-full aspect-square rounded-md flex flex-col justify-center items-center shadow-md gap-1 bg-gradient-to-br from-${data.color}-100 to-${data.color}-200 text-${data.color}-950`}
       >
         {React.createElement(data.icon, {
           className: `w-1/2 h-1/3 fill-${data.color}-900`,
