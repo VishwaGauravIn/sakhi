@@ -29,3 +29,7 @@
     animation-timing-function: ease-out;
   }
 }
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
