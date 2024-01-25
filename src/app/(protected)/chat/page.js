@@ -37,7 +37,7 @@ export default function Chat() {
           </div>
         </form>
         <button
-          type="submit"
+          onClick={handleSubmit}
           className="rounded-full"
           size="icon"
           variant="ghost"
