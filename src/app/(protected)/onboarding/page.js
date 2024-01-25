@@ -1,11 +1,13 @@
 "use client";
 
+import { toast } from "@/components/ui/Toast";
 import { Button } from "@/components/ui/button";
+import { db } from "@/config/firebase";
+import { collection, doc, setDoc } from "firebase/firestore/lite";
 import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 import { BsChevronDoubleRight } from "react-icons/bs";
-
-// TODO: create a form asking for required infos and send the data on submit, redirect to dashboard
+import { generateMenstrualCycle } from "@/lib/utils";
 
 export default function Onboarding() {
   const { data } = useSession();
@@ -24,9 +26,19 @@ export default function Onboarding() {
     stress: "",
   });
 
-  useEffect(() => {
-    console.log(menstrualData);
-  }, [menstrualData]);
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const menstrualCycle = generateMenstrualCycle(menstrualData);
+    const docRef = collection(db, "users");
+    setDoc(doc(docRef, data?.user?.email), { menstrualData, menstrualCycle })
+      .then(() => {
+        window.location.href = "/dashboard";
+      })
+      .catch((e) => {
+        toast.error("Something went wrong");
+      });
+  }
+
   return (
     <div className="flex flex-col gap-4">
       <p className="w-full text-center text-2xl text-pink-400 mt-10">
@@ -56,7 +68,7 @@ export default function Onboarding() {
             Please fill these info so that we can personalize our app for you:
           </p>
           <form
-            onSubmit={() => alert(55)}
+            onSubmit={handleSubmit}
             className="flex flex-col gap-4 accent-pink-400"
           >
             <label htmlFor="name" className="text-sm">
@@ -64,7 +76,6 @@ export default function Onboarding() {
             </label>
             <input
               type="date"
-              name="name"
               id="name"
               required
               value={menstrualData.last_period_start_date}
@@ -154,7 +165,6 @@ export default function Onboarding() {
             </label>
             <input
               type="text"
-              name="name"
               placeholder="No recent changes"
               value={menstrualData.recent_changes_in_your_cycle}
               onChange={(e) =>
@@ -170,7 +180,6 @@ export default function Onboarding() {
             </label>
             <input
               type="text"
-              name="name"
               placeholder="eg. PCOS, Endometriosis, Thyroid, etc."
               value={menstrualData.underlying_health_conditions}
               onChange={(e) =>
@@ -186,7 +195,6 @@ export default function Onboarding() {
             </label>
             <input
               type="text"
-              name="name"
               placeholder="Birth control pills"
               value={menstrualData.medications}
               onChange={(e) =>
@@ -202,7 +210,6 @@ export default function Onboarding() {
             </label>
             <input
               type="text"
-              name="name"
               placeholder="Low, Medium, High"
               value={menstrualData.stress}
               onChange={(e) =>
