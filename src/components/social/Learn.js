@@ -17,10 +17,10 @@ const Learn = () => {
     {
       color: 'rose',
       label: 'Pepper Spray',
-      href: '#',
+      href: 'https://www.flipkart.com/search?q=pepper%20spary',
       icon: LiaPepperHotSolid,
     },
-    { color: 'green', label: 'Resources', href: '#', icon: FaSwatchbook },
+    { color: 'green', label: 'Resources', href: 'https://www.instructables.com/Basic-Street-Safety-for-Women/', icon: FaSwatchbook },
   ];
 
   function GridElement({ key, data }) {

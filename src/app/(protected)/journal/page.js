@@ -1,9 +1,13 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useSession } from 'next-auth/react';
-import { HiOutlineMicrophone, HiPlus } from 'react-icons/hi2';
+
 import Image from 'next/image';
+import Link from 'next/link';
+
+import { useSession } from 'next-auth/react';
+
+import Greeting from '@/components/dashboard/Greeting';
 
 import {
   BiAngry,
@@ -12,8 +16,8 @@ import {
   BiSad,
   BiSmile,
 } from 'react-icons/bi';
-import Link from 'next/link';
-import Greeting from '@/components/dashboard/Greeting';
+
+import { HiOutlineMicrophone, HiPlus } from 'react-icons/hi2';
 
 import {
   Drawer,
@@ -46,8 +50,9 @@ export default function Journal() {
       document.getElementById('close-create-new-note').click();
     }, 3000);
   };
+
   // Format of notes array of objects
-  const notes = [
+  const [notes, serNotes] = useState([
     {
       mood: 'happy',
       date: 1706203768633,
@@ -72,7 +77,7 @@ export default function Journal() {
       text: 'I was going through the lift and there was...',
       id: '4',
     },
-  ];
+  ]);
 
   const getMoodBasedEmoji = (mood) => {
     switch (mood) {
