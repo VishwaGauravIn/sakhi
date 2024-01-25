@@ -2,6 +2,7 @@ import { Exo_2, Inter } from "next/font/google";
 import "./globals.css";
 import ToastWrapper from "@/wrapper/ToastWrapper";
 import HeaderNav from "@/components/HeaderNav";
+import NextTopLoader from "nextjs-toploader";
 
 // const inter = Inter({ subsets: ["latin"] });
 const exo2 = Exo_2({ subsets: ["latin"] });
@@ -25,6 +26,7 @@ export default function RootLayout({ children }) {
         <link rel="manifest" href="/manifest.json" />
       </head>
       <body className={exo2.className + " sm:overflow-hidden"}>
+        <NextTopLoader />
         <HeaderNav />
         {children}
 
