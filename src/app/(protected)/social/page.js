@@ -5,8 +5,6 @@ import Learn from '@/components/social/Learn';
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
-import { Button } from '@/components/ui/button';
-
 import { HiOutlinePlusCircle } from 'react-icons/hi2';
 
 export default function Social() {

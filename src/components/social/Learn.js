@@ -11,7 +11,7 @@ const Learn = () => {
     {
       color: 'amber',
       label: 'Martial Arts',
-      href: '#',
+      href: '/martial-art-for-safety',
       icon: MdSportsMartialArts,
     },
     {
