@@ -47,7 +47,7 @@ export default function Tracker() {
     <div>
       {userFireData ? (
         <div className="flex flex-col">
-          <Greeting />
+          <Greeting userFirstName={userFirstName} />
           <hr className="w-full opacity-20" />
           <p className="text-2xl font-semibold text-center text-rose-400">
             Your Menstrual Tracker
