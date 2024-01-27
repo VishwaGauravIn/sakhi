@@ -163,8 +163,8 @@ export default function Journal() {
   };
 
   const getLimitedCharacters = (string) => {
-    if (string.length > 40) {
-      return string.slice(0, 40) + '...';
+    if (string.length > 30) {
+      return string.slice(0, 30) + '...';
     } else {
       return string;
     }
@@ -275,7 +275,7 @@ export default function Journal() {
       </Drawer>
 
       {/* view any notes */}
-      <Drawer className='max-h-[80vh]'>
+      <Drawer>
         <DrawerTrigger id='view-note' className='hidden'>
           Open
         </DrawerTrigger>
@@ -285,7 +285,7 @@ export default function Journal() {
               {getDateAndMonthFromDate(Number(currentViewNote.createdAt))}
             </DrawerTitle>
           </DrawerHeader>
-          <p className='whitespace-pre-wrap p-4'>{currentViewNote.note}</p>
+          <p className='whitespace-pre-wrap p-4 max-h-[70vh] overflow-y-auto'>{currentViewNote.note}</p>
           <DrawerFooter>
             <DrawerClose className='hidden'>
               <button id='close-view-note'>Cancel</button>
