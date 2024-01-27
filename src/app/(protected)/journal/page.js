@@ -221,7 +221,7 @@ export default function Journal() {
                     note.mood
                   )}-900`}
                 ></div>
-                <p className='max-w-[70%] text-left'>
+                <p className='max-w-[60%] text-left'>
                   {getLimitedCharacters(note.note)}
                 </p>
               </div>
