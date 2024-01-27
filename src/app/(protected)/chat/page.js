@@ -6,7 +6,9 @@ import { FaFemale } from "react-icons/fa";
 import { useChat } from "ai/react";
 
 export default function Chat() {
-  const { messages, input, handleInputChange, handleSubmit } = useChat();
+  const { messages, input, handleInputChange, handleSubmit } = useChat({
+    api: '/api/chat',
+  });
   return (
     <div className="relative h-[calc(100vh-190px)] overflow-y-auto hide-scrollbar">
       <main className="flex-1 flex flex-col gap-4 py-4">
