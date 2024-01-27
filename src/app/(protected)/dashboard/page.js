@@ -26,7 +26,7 @@ export default function Dashboard() {
       href: "/",
       icon: AiFillSafetyCertificate,
     },
-    { color: "fuchsia", label: "Support", href: "/", icon: RiMentalHealthFill },
+    { color: "fuchsia", label: "Knowledge", href: "/knowledge", icon: RiMentalHealthFill },
     { color: "orange", label: "Community", href: "/social", icon: HiUserGroup },
     {
       color: "sky",
