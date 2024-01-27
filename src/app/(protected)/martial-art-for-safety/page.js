@@ -6,8 +6,7 @@ const MartialArtForSafety = () => {
       <div className='text-2xl font-semibold'>
         Self-Defense Moves For Your Safety
       </div>
-
-      <div className='font-bold mt-4 text-lg'> 1. Hammer strike</div>
+      <div className='font-bold mt-8 text-xl mb-2'> 1. Hammer strike</div>
       <p>
         Using your car keys is one of the easiest ways to defend yourself.
         Don&apos;t use your fingernails, because you&apos;re more at risk to
@@ -41,7 +40,7 @@ const MartialArtForSafety = () => {
         </ul>
       </p>
 
-      <div className='font-bold mt-4 text-lg'> 2. Groin kick</div>
+      <div className='font-bold mt-8 text-xl mb-2'> 2. Groin kick</div>
       <p>
         If someone is coming at you from the front, a groin kick may deliver
         enough force to paralyze your attacker, making your escape possible.
@@ -68,7 +67,7 @@ const MartialArtForSafety = () => {
         </ul>
       </p>
 
-      <div className='font-bold mt-4 text-lg'>3. Heel palm strike</div>
+      <div className='font-bold mt-8 text-xl mb-2'>3. Heel palm strike</div>
       <p>
         This move can cause damage to the nose or throat. To execute, get in
         front of your attacker as much as is possible.
@@ -99,7 +98,7 @@ const MartialArtForSafety = () => {
         </ul>
       </p>
 
-      <div className='font-bold mt-4 text-lg'>4. Elbow strike</div>
+      <div className='font-bold mt-8 text-xl mb-2'>4. Elbow strike</div>
       <p>
         If your attacker is in close range and you&apos;re unable to get enough
         momentum to throw a strong punch or kick, use your elbows.
@@ -130,7 +129,7 @@ const MartialArtForSafety = () => {
         </ul>
       </p>
 
-      <div className='font-bold mt-4 text-lg'>5. Alternative elbow strikes</div>
+      <div className='font-bold mt-8 text-xl mb-2'>5. Alternative elbow strikes</div>
       <p>
         Depending on how you&apos;re standing when you&apos;re initially
         attacked, you may be in a better position for variations on the elbow
@@ -164,7 +163,7 @@ const MartialArtForSafety = () => {
         </ul>
       </p>
 
-      <div className='font-bold mt-4 text-lg'>
+      <div className='font-bold mt-8 text-xl mb-2'>
         6. Escape from a &apos;bear hug attack&apos;
       </div>
       <p>
@@ -198,7 +197,7 @@ const MartialArtForSafety = () => {
         </ul>
       </p>
 
-      <div className='font-bold mt-4 text-lg'>7. Escape with hands trapped</div>
+      <div className='font-bold mt-8 text-xl mb-2'>7. Escape with hands trapped</div>
       <p>
         If your attacker comes from behind and traps your arms (this is similar
         to a bear hug, but you won&apos;t be able to move as freely),
@@ -230,7 +229,7 @@ const MartialArtForSafety = () => {
         </ul>
       </p>
 
-      <div className='font-bold mt-4 text-lg'>8. Escape from side headlock</div>
+      <div className='font-bold mt-8 text-xl mb-2'>8. Escape from side headlock</div>
       <p>
         When the attacker locks their arm around your head from the side, your
         first instinct should be to avoid getting choked.
