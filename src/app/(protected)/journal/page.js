@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Image from 'next/image';
 import Link from 'next/link';
@@ -8,6 +8,8 @@ import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 
 import Greeting from '@/components/dashboard/Greeting';
+
+// import {   } from 'sentiment';
 
 import {
   BiAngry,
@@ -30,6 +32,18 @@ import {
   DrawerTrigger,
 } from '@/components/ui/drawer';
 
+import {
+  addDoc,
+  collection,
+  getDocs,
+  query,
+  where,
+} from 'firebase/firestore/lite';
+
+import { db } from '@/config/firebase';
+
+import { toast } from '@/components/ui/Toast';
+
 export default function Journal() {
   const { data } = useSession();
   const userFirstName = data?.user?.name ? data.user.name.split(' ')[0] : '';
@@ -37,47 +51,71 @@ export default function Journal() {
   const [newNote, setNewNote] = useState('');
   const [loading, setLoading] = useState(false);
 
+  // Format of notes array of objects
+  const [notes, setNotes] = useState([]);
+
   const openNewNoteDrawer = () => {
     document.getElementById('create-new-note').click();
   };
 
-  const handleNewNoteSubmit = (e) => {
+  const getTextSentiments = async (text) => {
+    const sentiment = new Sentiment();
+    var result = await sentiment.analyze(text);
+    if (result.score > 0) {
+      return 'happy';
+    } else if (result.score < 0) {
+      return 'sad';
+    } else {
+      return 'neutral';
+    }
+  };
+
+  const loadNotes = async (email) => {
+    try {
+      if (email) {
+        const q = await query(
+          collection(db, 'journals'),
+          where('owner', '==', email)
+        );
+        const querySnapshot = await getDocs(q);
+        const _temporary_array_for_journals = [];
+        querySnapshot.forEach((doc) => {
+          _temporary_array_for_journals.push({ id: doc.id, ...doc.data() });
+        });
+        setNotes(_temporary_array_for_journals);
+      }
+    } catch (err) {
+      //
+    }
+  };
+
+  useEffect(() => {
+    loadNotes(data?.user?.email);
+  }, [data]);
+
+  const handleNewNoteSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
+    try {
+      const saveNoteToDB = await addDoc(collection(db, 'journals'), {
+        note: newNote,
+        owner: data?.user?.email,
+        mood: 'happy',
+        createdAt: new Date(),
+      });
+
+      if (saveNoteToDB) {
+        toast.success('Note Saved');
+      }
+    } catch (err) {
+      toast.error('Something Went Wrong');
+    } finally {
       setLoading(false);
       setNewNote('');
       document.getElementById('close-create-new-note').click();
-    }, 3000);
+      loadNotes(data?.user?.email);
+    }
   };
-
-  // Format of notes array of objects
-  const [notes, serNotes] = useState([
-    {
-      mood: 'happy',
-      date: 1706203768633,
-      text: 'I was going through the lift and there was...',
-      id: '1',
-    },
-    {
-      mood: 'sad',
-      date: 1706203768633,
-      text: 'I was going through the lift and there was...',
-      id: '2',
-    },
-    {
-      mood: 'angry',
-      date: 1706203768633,
-      text: 'I was going through the lift and there was...',
-      id: '3',
-    },
-    {
-      mood: 'unknown',
-      date: 1706203768633,
-      text: 'I was going through the lift and there was...',
-      id: '4',
-    },
-  ]);
 
   const getMoodBasedEmoji = (mood) => {
     switch (mood) {
@@ -110,6 +148,14 @@ export default function Journal() {
     const month = dateObj.toLocaleString('default', { month: 'short' });
     const day = dateObj.getDate();
     return `${day} ${month}`;
+  };
+
+  const getLimitedCharacters = (string) => {
+    if (string.length > 40) {
+      return string.slice(0, 40) + '...';
+    } else {
+      return string;
+    }
   };
 
   return (
@@ -150,14 +196,14 @@ export default function Journal() {
             >
               <div className='max-w-[80%] flex flex-row justify-start items-center'>
                 <div className='font-semibold text-center px-2'>
-                  {getDateAndMonthFromDate(note.date)}
-                </div>{' '}
+                  {getDateAndMonthFromDate(Number(note.createdAt))}
+                </div>
                 <div
                   className={`ml-2 mr-4 h-10 w-[2px] rounded-[1px] bg-${getMoodBasedColor(
                     note.mood
                   )}-900`}
-                ></div>{' '}
-                {note.text}
+                ></div>
+                {getLimitedCharacters(note.note)}
               </div>
 
               {React.createElement(getMoodBasedEmoji(note.mood), {
