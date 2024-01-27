@@ -50,10 +50,16 @@ export default function Journal() {
   const [newNote, setNewNote] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const [currentViewNote, setCurrentViewNote] = useState('');
+  const [currentViewNote, setCurrentViewNote] = useState({
+    note: '',
+    createdAt: '',
+  });
 
   const viewNote = (note) => {
-    setCurrentViewNote(note);
+    setCurrentViewNote({
+      note: note.note,
+      createdAt: note.createdAt,
+    });
     document.getElementById('view-note').click();
   };
 
@@ -191,12 +197,14 @@ export default function Journal() {
       <div className='p-4'>
         <div className='text-base pb-4 font-semibold'>Recent Notes</div>
 
+        {notes.length === 0 && (
+          <p>
+            You don&apos;t have any notes yet. Click on the button above to
+            create one.
+          </p>
+        )}
         {notes.map((note, index) => (
-          <button
-            className='w-full'
-            onClick={() => viewNote(note.note)}
-            key={index}
-          >
+          <button className='w-full' onClick={() => viewNote(note)} key={index}>
             <div
               className={`w-full rounded-md flex flex-row mb-4 justify-between items-start p-2 shadow-md gap-1 bg-gradient-to-br from-${getMoodBasedColor(
                 note.mood
@@ -273,11 +281,12 @@ export default function Journal() {
         </DrawerTrigger>
         <DrawerContent>
           <DrawerHeader>
-            <DrawerTitle>{getLimitedCharacters(currentViewNote)}</DrawerTitle>
+            <DrawerTitle>
+              {getDateAndMonthFromDate(Number(currentViewNote.createdAt))}
+            </DrawerTitle>
           </DrawerHeader>
+          <p className='whitespace-pre-wrap p-4'>{currentViewNote.note}</p>
           <DrawerFooter>
-            <p className='whitespace-pre-wrap'>{currentViewNote}</p>
-
             <DrawerClose className='hidden'>
               <button id='close-view-note'>Cancel</button>
             </DrawerClose>
