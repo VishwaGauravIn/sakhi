@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from 'react';
 
 import Image from 'next/image';
-import Link from 'next/link';
 
 import { useSession } from 'next-auth/react';
 
@@ -50,6 +49,13 @@ export default function Journal() {
 
   const [newNote, setNewNote] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const [currentViewNote, setCurrentViewNote] = useState('');
+
+  const viewNote = (note) => {
+    setCurrentViewNote(note);
+    document.getElementById('view-note').click();
+  };
 
   // Format of notes array of objects
   const [notes, setNotes] = useState([]);
@@ -186,7 +192,11 @@ export default function Journal() {
         <div className='text-base pb-4 font-semibold'>Recent Notes</div>
 
         {notes.map((note, index) => (
-          <Link href={'#'} key={index}>
+          <button
+            className='w-full'
+            onClick={() => viewNote(note.note)}
+            key={index}
+          >
             <div
               className={`w-full rounded-md flex flex-row mb-4 justify-between items-start p-2 shadow-md gap-1 bg-gradient-to-br from-${getMoodBasedColor(
                 note.mood
@@ -203,15 +213,17 @@ export default function Journal() {
                     note.mood
                   )}-900`}
                 ></div>
-                {getLimitedCharacters(note.note)}
+                <p className='max-w-[70%] text-left'>
+                  {getLimitedCharacters(note.note)}
+                </p>
               </div>
 
               {React.createElement(getMoodBasedEmoji(note.mood), {
                 size: 36,
-                className: `fill-${getMoodBasedColor(note.mood)}-900`,
+                className: `fill-${getMoodBasedColor(note.mood)}-900 `,
               })}
             </div>
-          </Link>
+          </button>
         ))}
       </div>
 
@@ -249,6 +261,25 @@ export default function Journal() {
 
             <DrawerClose className='hidden'>
               <button id='close-create-new-note'>Cancel</button>
+            </DrawerClose>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
+
+      {/* view any notes */}
+      <Drawer className='max-h-[80vh]'>
+        <DrawerTrigger id='view-note' className='hidden'>
+          Open
+        </DrawerTrigger>
+        <DrawerContent>
+          <DrawerHeader>
+            <DrawerTitle>{getLimitedCharacters(currentViewNote)}</DrawerTitle>
+          </DrawerHeader>
+          <DrawerFooter>
+            <p className='whitespace-pre-wrap'>{currentViewNote}</p>
+
+            <DrawerClose className='hidden'>
+              <button id='close-view-note'>Cancel</button>
             </DrawerClose>
           </DrawerFooter>
         </DrawerContent>
