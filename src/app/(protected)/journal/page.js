@@ -8,7 +8,7 @@ import { useSession } from 'next-auth/react';
 
 import Greeting from '@/components/dashboard/Greeting';
 
-// import {   } from 'sentiment';
+var Sentiment = require('sentiment');
 
 import {
   BiAngry,
@@ -64,9 +64,9 @@ export default function Journal() {
     document.getElementById('create-new-note').click();
   };
 
-  const getTextSentiments = async (text) => {
+  const getTextSentiments = (text) => {
     const sentiment = new Sentiment();
-    var result = await sentiment.analyze(text);
+    var result = sentiment.analyze(text);
     if (result.score > 0) {
       return 'happy';
     } else if (result.score < 0) {
@@ -106,7 +106,7 @@ export default function Journal() {
       const saveNoteToDB = await addDoc(collection(db, 'journals'), {
         note: newNote,
         owner: data?.user?.email,
-        mood: 'happy',
+        mood: getTextSentiments(newNote),
         createdAt: new Date(),
       });
 
@@ -126,13 +126,13 @@ export default function Journal() {
   const getMoodBasedEmoji = (mood) => {
     switch (mood) {
       case 'happy':
-        return BiSmile;
+        return BiHappyHeartEyes;
       case 'sad':
         return BiSad;
       case 'angry':
         return BiAngry;
       default:
-        return BiHappyHeartEyes;
+        return BiSmile;
     }
   };
 
