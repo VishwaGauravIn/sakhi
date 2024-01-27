@@ -16,26 +16,44 @@ import {
   CardHeader,
 } from '@/components/ui/card';
 
-const PostUI = () => {
+function timeAgo(firebaseTimestamp) {
+  const now = new Date();
+  const postTime = firebaseTimestamp.toDate(); // Convert Firestore Timestamp to JavaScript Date
+
+  const timeDifference = now - postTime;
+  const seconds = Math.floor(timeDifference / 1000);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+
+  if (days > 0) {
+    return days === 1 ? '1 day ago' : `${days} days ago`;
+  } else if (hours > 0) {
+    return hours === 1 ? '1 hr ago' : `${hours} hrs ago`;
+  } else if (minutes > 0) {
+    return minutes === 1 ? '1 min ago' : `${minutes} mins ago`;
+  } else {
+    return 'just now';
+  }
+}
+
+const PostUI = ({ post }) => {
   const [isPostLiked, setIsPostLiked] = useState(false);
 
   return (
     <Card className='my-2 shadow-none'>
       <CardHeader>
         <CardDescription className='flex flex-row justify-between items-center'>
-          <span className='text-gray-500'>5h ago</span>
-          <span className='bg-pink-400 px-2 rounded-full ring-1 ring-pink-300 text-white text-sm'>
-            Volunteer
-          </span>
+          <span className='text-gray-500'>{timeAgo(post.createdAt)}</span>
+          {post?.type && (
+            <span className='bg-pink-400 px-2 rounded-full ring-1 ring-pink-300 text-white text-sm'>
+              Volunteer
+            </span>
+          )}
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <p>
-          Here are some tips for healthy lifestyle Prioritize self-care and make
-          time for activities that bring you joy and relaxation. Develop a
-          routine that includes adequate sleep, regular exercise, and healthy
-          eating.
-        </p>
+        <p className='whitespace-pre-wrap'>{post.post}</p>
       </CardContent>
       <CardFooter className='flex flex-row justify-start text-base items-center gap-2'>
         <button
