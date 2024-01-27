@@ -2,12 +2,10 @@
 
 import React, { useEffect, useState } from 'react';
 
+import { useSession } from 'next-auth/react';
+
 import PostUI from '@/components/social/PostUI';
 import Learn from '@/components/social/Learn';
-
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-
-import { HiOutlinePlusCircle } from 'react-icons/hi2';
 
 import {
   Drawer,
@@ -19,7 +17,14 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from '@/components/ui/drawer';
+import { toast } from '@/components/ui/Toast';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+
+import { HiOutlinePlusCircle } from 'react-icons/hi2';
 import { BiLoaderAlt } from 'react-icons/bi';
+
+import { db } from '@/config/firebase';
+
 import {
   Timestamp,
   addDoc,
@@ -29,17 +34,13 @@ import {
   orderBy,
   query,
 } from 'firebase/firestore/lite';
-import { db } from '@/config/firebase';
-import { toast } from '@/components/ui/Toast';
-import { useSession } from 'next-auth/react';
 
 export default function Social() {
   const { data } = useSession();
 
+  const [posts, setPosts] = useState([]);
   const [newPost, setNewPost] = useState('');
   const [loading, setLoading] = useState(false);
-
-  const [posts, setPosts] = useState([]);
 
   const openNewPostDrawer = () => {
     document.getElementById('create-new-post').click();
@@ -83,6 +84,7 @@ export default function Social() {
 
       if (savePostToDB) {
         toast.success('Posted');
+        loadPosts();
       }
     } catch (err) {
       toast.error('Something Went Wrong');
