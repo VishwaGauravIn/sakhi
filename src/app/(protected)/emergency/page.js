@@ -19,7 +19,7 @@ import { useSession } from 'next-auth/react';
 import React, { useEffect, useState } from 'react';
 import { BiLoaderAlt } from 'react-icons/bi';
 
-const page = () => {
+const Emergency = () => {
   const { data } = useSession();
 
   const [loading, setLoading] = useState(false);
@@ -231,4 +231,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Emergency;
