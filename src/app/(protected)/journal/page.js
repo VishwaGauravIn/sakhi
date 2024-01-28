@@ -50,6 +50,8 @@ export default function Journal() {
   const [newNote, setNewNote] = useState('');
   const [loading, setLoading] = useState(false);
 
+  const [pageLoading, setPageLoading] = useState(true);
+
   const [currentViewNote, setCurrentViewNote] = useState({
     note: '',
     createdAt: '',
@@ -98,6 +100,8 @@ export default function Journal() {
       }
     } catch (err) {
       //
+    } finally{
+      setPageLoading(false);
     }
   };
 
@@ -197,7 +201,13 @@ export default function Journal() {
       <div className='p-4'>
         <div className='text-base pb-4 font-semibold'>Recent Notes</div>
 
-        {notes.length === 0 && (
+        {pageLoading && (
+          <div className='flex flex-row justify-center items-center p-4'>
+            <BiLoaderAlt className='text-4xl animate-spin' />
+          </div>
+        )}
+
+        {!pageLoading && notes.length === 0 && (
           <p>
             You don&apos;t have any notes yet. Click on the button above to
             create one.

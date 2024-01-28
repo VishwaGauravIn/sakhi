@@ -14,6 +14,7 @@ import { FaEgg } from "react-icons/fa6";
 import { MdBloodtype } from "react-icons/md";
 import { SiEsbuild } from "react-icons/si";
 import { GiCottonFlower } from "react-icons/gi";
+import { BiLoaderAlt } from "react-icons/bi";
 
 export default function Tracker() {
   const { data } = useSession();
@@ -164,7 +165,9 @@ export default function Tracker() {
           </Accordion>
         </div>
       ) : (
-        "loading your data"
+        <div className='flex flex-row justify-center items-center p-4'>
+          <BiLoaderAlt className='text-4xl animate-spin' />
+        </div>
       )}
     </div>
   );

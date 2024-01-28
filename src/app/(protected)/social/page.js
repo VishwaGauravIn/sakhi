@@ -42,6 +42,8 @@ export default function Social() {
   const [newPost, setNewPost] = useState('');
   const [loading, setLoading] = useState(false);
 
+  const [pageLoading, setPageLoading] = useState(true);
+
   const openNewPostDrawer = () => {
     document.getElementById('create-new-post').click();
   };
@@ -65,6 +67,8 @@ export default function Social() {
       setPosts(_posts_temp_array);
     } catch (err) {
       //
+    } finally {
+      setPageLoading(false);
     }
   };
 
@@ -165,6 +169,13 @@ export default function Social() {
             </DrawerFooter>
           </DrawerContent>
         </Drawer>
+
+
+        {pageLoading && (
+          <div className='flex flex-row justify-center items-center p-4'>
+            <BiLoaderAlt className='text-4xl animate-spin' />
+          </div>
+        )}
 
         {/* Post UI compoentns mapping posts dynanmically */}
         {posts.map((post, index) => (
