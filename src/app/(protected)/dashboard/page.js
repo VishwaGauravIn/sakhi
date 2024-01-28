@@ -40,7 +40,7 @@ export default function Dashboard() {
       href: "/",
       icon: BiSolidAlarmExclamation,
     },
-    { color: "pink", label: "Emergency", href: "/", icon: MdEmergency },
+    { color: "pink", label: "Emergency", href: "/emergency", icon: MdEmergency },
     {
       color: "cyan",
       label: "Desserts",
