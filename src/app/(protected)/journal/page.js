@@ -36,6 +36,7 @@ import {
   addDoc,
   collection,
   getDocs,
+  orderBy,
   query,
   where,
 } from 'firebase/firestore/lite';
@@ -88,15 +89,13 @@ export default function Journal() {
   const loadNotes = async (email) => {
     try {
       if (email) {
-        const q = await query(
-          collection(db, 'journals'),
-          where('owner', '==', email)
-        );
+        const q = await query(collection(db, 'journals'),where('owner', '==', email));
         const querySnapshot = await getDocs(q);
         const _temporary_array_for_journals = [];
         querySnapshot.forEach((doc) => {
           _temporary_array_for_journals.push({ id: doc.id, ...doc.data() });
         });
+        _temporary_array_for_journals.sort((a, b) => b.createdAt - a.createdAt);
         setNotes(_temporary_array_for_journals);
       }
     } catch (err) {
