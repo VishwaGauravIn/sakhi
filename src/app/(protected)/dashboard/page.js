@@ -11,6 +11,7 @@ import { RiMentalHealthFill } from "react-icons/ri";
 import { HiChatBubbleBottomCenterText, HiUserGroup } from "react-icons/hi2";
 import { BiSolidAlarmExclamation } from "react-icons/bi";
 import { GiCupcake } from "react-icons/gi";
+import { MdFactCheck } from "react-icons/md";
 import Link from "next/link";
 
 export default function Dashboard() {
@@ -21,12 +22,17 @@ export default function Dashboard() {
     { color: "rose", label: "Cycle", href: "/tracker", icon: MdWaterDrop },
     { color: "amber", label: "Journal", href: "/journal", icon: FaBookOpen },
     {
-      color: "green",
-      label: "Safety",
-      href: "/safety",
-      icon: AiFillSafetyCertificate,
+      color: "emerald",
+      label: "Fact Check",
+      href: "/fact-check",
+      icon: MdFactCheck,
     },
-    { color: "fuchsia", label: "Knowledge", href: "/knowledge", icon: RiMentalHealthFill },
+    {
+      color: "fuchsia",
+      label: "Knowledge",
+      href: "/knowledge",
+      icon: RiMentalHealthFill,
+    },
     { color: "orange", label: "Community", href: "/social", icon: HiUserGroup },
     {
       color: "sky",
@@ -35,12 +41,17 @@ export default function Dashboard() {
       icon: HiChatBubbleBottomCenterText,
     },
     {
-      color: "emerald",
-      label: "Reminders",
-      href: "/",
-      icon: BiSolidAlarmExclamation,
+      color: "green",
+      label: "Safety",
+      href: "/safety",
+      icon: AiFillSafetyCertificate,
     },
-    { color: "pink", label: "Emergency", href: "/emergency", icon: MdEmergency },
+    {
+      color: "pink",
+      label: "Emergency",
+      href: "/emergency",
+      icon: MdEmergency,
+    },
     {
       color: "cyan",
       label: "Desserts",
