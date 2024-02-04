@@ -11,7 +11,7 @@ import { Button } from "./ui/button";
 export default function HeaderNav() {
   return (
     <SessionProvider>
-      <nav className="p-2 sticky top-0 z-10 bg-white h-16 flex items-center justify-between">
+      <nav className="p-2 sticky top-0 z-30 bg-white h-16 flex items-center justify-between">
         <p className={`flex text-4xl gap-1 items-center text-pink-400 `}>
           <RiHeart2Line className="text-5xl heartbeat" />
         </p>
