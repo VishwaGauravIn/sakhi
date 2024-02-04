@@ -22,7 +22,7 @@ export default function FactCheck() {
 
 function MythFactComp({ data }) {
   return (
-    <div className="p-4 rounded-lg bg-zinc-100 flex flex-col gap-2">
+    <div className="p-4 rounded-lg bg-zinc-50 flex flex-col gap-2">
       {/* Mark */}
       <div className="relative flex items-center text-sm">
         <div
