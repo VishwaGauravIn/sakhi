@@ -12,7 +12,7 @@ export default function NavBar({ active, setActive }) {
   };
 
   return (
-    <div className="fixed w-full bottom-0 left-0 h-16 flex gap-1 overflow-hidden bg-white">
+    <div className="fixed w-full bottom-0 left-0 h-16 flex gap-1 overflow-hidden bg-white z-30">
       {navItems.map((item) => (
         <NavItem
           key={item.id}
