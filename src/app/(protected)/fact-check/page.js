@@ -22,11 +22,11 @@ export default function FactCheck() {
 
 function MythFactComp({ data }) {
   return (
-    <div className="m-2 p-2 rounded-md bg-zinc-100 flex flex-col gap-2">
+    <div className="m-2 p-4 rounded-lg bg-zinc-100 flex flex-col gap-2">
       {/* Mark */}
       <div className="relative flex items-center text-sm">
         <div
-          className={`p-2 rounded-full ring ring-zinc-100 z-10 ${
+          className={`p-2 rounded-full ring-1 ring-zinc-100 z-10 ${
             data.type === "fact" ? "bg-green-500" : "bg-red-500 "
           }`}
         >
