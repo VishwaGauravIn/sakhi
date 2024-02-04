@@ -93,8 +93,8 @@ const Emergency = () => {
       <Greeting userFirstName={userFirstName} />
       <h3 className='text-lg mb-2'>Emergency Contacts</h3>
       <div className='border shadow-sm border-gray-200 rounded-xl'>
-        <Link
-          href={`tel:${emergencyData?.contect}`}
+        <a
+          href={`tel:${emergencyData?.contact}`}
           className='cursor-pointer  px-2 py-3 text-center w-full flex flex-row justify-between items-center gap-2 rounded-xl'
         >
           <div className='flex flex-row justify-start items-center gap-2 '>
@@ -103,9 +103,9 @@ const Emergency = () => {
           </div>
 
           <FaChevronRight className='text-lg ' />
-        </Link>
+        </a>
         <hr />
-        <Link
+        <a
           href={'tel:7827170170'}
           className='cursor-pointer  px-2 py-3 text-center w-full flex flex-row justify-between items-center gap-2 rounded-xl'
         >
@@ -115,9 +115,9 @@ const Emergency = () => {
           </div>
 
           <FaChevronRight className='text-lg' />
-        </Link>
+        </a>
         <hr />
-        <Link
+        <a
           href={'tel:108'}
           className='cursor-pointer  px-2 py-3 text-center w-full flex flex-row justify-between items-center gap-2 rounded-xl'
         >
@@ -127,7 +127,7 @@ const Emergency = () => {
           </div>
 
           <FaChevronRight className='text-lg' />
-        </Link>
+        </a>
       </div>
 
       <Accordion className='border shadow-sm border-gray-200 rounded-xl text-black px-3 h-fit my-4' type='single' collapsible>

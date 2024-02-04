@@ -26,7 +26,7 @@ const EmergencyData = () => {
 
   const [emergencyData, setEmergencyData] = useState({
     name: '',
-    contect: '',
+    contact: '',
     address: '',
     sex: 'not-set',
     organDonor: 'not-set',
@@ -94,7 +94,7 @@ const EmergencyData = () => {
             type='tel'
             id='contact'
             disabled={loading}
-            value={emergencyData.contact}
+            value={emergencyData?.contact}
             onChange={(e) =>
               setEmergencyData({ ...emergencyData, contact: e.target.value })
             }
