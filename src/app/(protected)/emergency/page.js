@@ -85,7 +85,7 @@ const Emergency = () => {
       '1091/ 1291, (011) 23317004',
     ],
     ['Shakti Shalini', '10920'],
-    ["Shakti Shalini - women's shelter", '(011) 24373736/ 24373737'],
+    ['Shakti Shalini - women\'s shelter', '(011) 24373736/ 24373737'],
     ['SAARTHAK', '(011) 26853846/ 26524061'],
     ["All India Women's Conference", '10921/ (011) 23389680'],
     ['JAGORI', '(011) 26692700 +918800996640'],
