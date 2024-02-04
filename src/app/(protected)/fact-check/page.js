@@ -11,7 +11,7 @@ export default function FactCheck() {
         <MdFactCheck className="inline-block mt-0.5 text-5xl" />
         Fact Check
       </p>
-      <div className="flex flex-col mt-4 gap-2">
+      <div className="flex flex-col mt-4 gap-4">
         {myth_fact.map((item, index) => (
           <MythFactComp key={index} data={item} />
         ))}

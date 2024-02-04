@@ -1,10 +1,10 @@
-import { Exo_2, Inter } from "next/font/google";
+import { Exo_2, Open_Sans } from "next/font/google";
 import "./globals.css";
 import ToastWrapper from "@/wrapper/ToastWrapper";
 import HeaderNav from "@/components/HeaderNav";
 import NextTopLoader from "nextjs-toploader";
 
-// const inter = Inter({ subsets: ["latin"] });
+export const open_sans = Open_Sans({ subsets: ["latin"] });
 const exo2 = Exo_2({ subsets: ["latin"] });
 
 export const metadata = {
