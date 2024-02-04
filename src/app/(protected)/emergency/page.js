@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
-import { FaHospital } from 'react-icons/fa';
+import { FaChevronRight, FaHospital } from 'react-icons/fa';
 import { FaPerson } from 'react-icons/fa6';
 import { MdEmergency } from 'react-icons/md';
 
@@ -30,7 +30,7 @@ import Greeting from '@/components/dashboard/Greeting';
 
 const Emergency = () => {
   const { data } = useSession();
-  const userFirstName = data?.user?.name ? data.user.name.split(" ")[0] : "";
+  const userFirstName = data?.user?.name ? data.user.name.split(' ')[0] : '';
 
   const [loading, setLoading] = useState(false);
 
@@ -62,21 +62,6 @@ const Emergency = () => {
   useEffect(() => {
     loadEmergencyData(data);
   }, [data]);
-  const menuItems = [
-    {
-      color: 'amber',
-      label: 'Family',
-      href: `tel:${emergencyData?.contect}`,
-      icon: FaPerson,
-    },
-    {
-      color: 'rose',
-      label: 'Emergency',
-      href: 'tel:7827170170',
-      icon: MdEmergency,
-    },
-    { color: 'green', label: 'Hospital', href: 'tel:108', icon: FaHospital },
-  ];
 
   const tableData = [
     ['National Commission for Women Helpline', '7827170170'],
@@ -85,7 +70,7 @@ const Emergency = () => {
       '1091/ 1291, (011) 23317004',
     ],
     ['Shakti Shalini', '10920'],
-    ['Shakti Shalini - women\'s shelter', '(011) 24373736/ 24373737'],
+    ["Shakti Shalini - women's shelter", '(011) 24373736/ 24373737'],
     ['SAARTHAK', '(011) 26853846/ 26524061'],
     ["All India Women's Conference", '10921/ (011) 23389680'],
     ['JAGORI', '(011) 26692700 +918800996640'],
@@ -103,35 +88,52 @@ const Emergency = () => {
     ],
   ];
 
-  function GridElement({ key, data }) {
-    return (
-      <Link href={data.href}>
-        <div
-          key={key}
-          className={`w-full aspect-square rounded-md flex flex-col justify-center items-center shadow-md gap-1 bg-gradient-to-br from-${data.color}-100 to-${data.color}-200 text-${data.color}-950`}
-        >
-          {React.createElement(data.icon, {
-            className: `w-1/2 h-1/3 fill-${data.color}-900`,
-          })}
-          <span className='font-semibold'>{data.label}</span>
-        </div>
-      </Link>
-    );
-  }
   return (
     <div>
-    <Greeting userFirstName={userFirstName} />
+      <Greeting userFirstName={userFirstName} />
       <h3 className='text-lg mb-2'>Emergency Contacts</h3>
-      <div className='grid grid-cols-3 gap-4'>
-        {menuItems.map((item) => (
-          <GridElement key={item.label} data={item} />
-        ))}
+      <div className='border shadow-sm border-gray-200 rounded-xl'>
+        <Link
+          href={`tel:${emergencyData?.contect}`}
+          className='cursor-pointer  px-2 py-3 text-center w-full flex flex-row justify-between items-center gap-2 rounded-xl'
+        >
+          <div className='flex flex-row justify-start items-center gap-2 '>
+            <FaPerson className='text-lg text-emerald-600' />
+            Family
+          </div>
+
+          <FaChevronRight className='text-lg ' />
+        </Link>
+        <hr />
+        <Link
+          href={'tel:7827170170'}
+          className='cursor-pointer  px-2 py-3 text-center w-full flex flex-row justify-between items-center gap-2 rounded-xl'
+        >
+          <div className='flex flex-row justify-start items-center gap-2'>
+            <MdEmergency className='text-lg text-rose-600' />
+            Emergency
+          </div>
+
+          <FaChevronRight className='text-lg' />
+        </Link>
+        <hr />
+        <Link
+          href={'tel:108'}
+          className='cursor-pointer  px-2 py-3 text-center w-full flex flex-row justify-between items-center gap-2 rounded-xl'
+        >
+          <div className='flex flex-row justify-start items-center gap-2'>
+            <FaHospital className='text-lg text-amber-600' />
+            Hospital
+          </div>
+
+          <FaChevronRight className='text-lg' />
+        </Link>
       </div>
 
-      <Accordion className='my-4' type='single' collapsible>
+      <Accordion className='border shadow-sm border-gray-200 rounded-xl text-black px-3 h-fit my-4' type='single' collapsible>
         <AccordionItem value='item-1'>
-          <AccordionTrigger className='bg-gray-50 text-black px-2 py-3 text-lg font-semibold'>
-            Additional Contact Options
+          <AccordionTrigger className='text-lg font-semibold'>
+            Other Emergency Contacts
           </AccordionTrigger>
           <AccordionContent>
             <Table>
@@ -142,7 +144,6 @@ const Emergency = () => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-
                 {tableData.map((item, index) => (
                   <TableRow key={index}>
                     <TableCell>{item[0]}</TableCell>
@@ -163,9 +164,11 @@ const Emergency = () => {
         </AccordionItem>
       </Accordion>
 
-      <Link href='/emergency-data' className='cursor-pointer bg-gray-50 text-black font-semibold px-2 py-3 text-center w-full flex flex-row justify-start items-center gap-2 rounded-md'>
-          View/Update Emergency Data
-     
+      <Link
+        href='/emergency-data'
+        className='cursor-pointer border shadow-sm border-gray-200 rounded-xl font-semibold px-2 py-3 text-center w-full flex flex-row justify-start items-center gap-2'
+      >
+        View/Update Emergency Data
       </Link>
     </div>
   );
