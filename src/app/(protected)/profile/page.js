@@ -31,7 +31,7 @@ export default function Profile() {
           src={data?.user?.image}
           rel='noreferrer'
           alt=''
-          class='h-14 w-14 rounded-full ring-2 ring-pink-400'
+          className='h-14 w-14 rounded-full ring-2 ring-pink-400'
         />
         <div>
           <h1 className='text-2xl font-semibold'>{data?.user?.name}</h1>

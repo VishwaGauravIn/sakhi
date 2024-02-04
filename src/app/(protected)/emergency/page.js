@@ -27,6 +27,7 @@ import { useSession } from 'next-auth/react';
 import { doc, getDoc } from 'firebase/firestore/lite';
 import { db } from '@/config/firebase';
 import Greeting from '@/components/dashboard/Greeting';
+import { FiPhoneCall } from 'react-icons/fi';
 
 const Emergency = () => {
   const { data } = useSession();
@@ -95,38 +96,38 @@ const Emergency = () => {
       <div className='border shadow-sm border-gray-200 rounded-xl'>
         <a
           href={`tel:${emergencyData?.contact}`}
-          className='cursor-pointer  px-2 py-3 text-center w-full flex flex-row justify-between items-center gap-2 rounded-xl'
+          className='cursor-pointer p-3 text-center w-full flex flex-row justify-between items-center gap-2 rounded-xl'
         >
           <div className='flex flex-row justify-start items-center gap-2 '>
             <FaPerson className='text-lg text-emerald-600' />
             Family
           </div>
 
-          <FaChevronRight className='text-lg ' />
+          <FiPhoneCall className='text-lg' />
         </a>
         <hr />
         <a
           href={'tel:7827170170'}
-          className='cursor-pointer  px-2 py-3 text-center w-full flex flex-row justify-between items-center gap-2 rounded-xl'
+          className='cursor-pointer p-3 text-center w-full flex flex-row justify-between items-center gap-2 rounded-xl'
         >
           <div className='flex flex-row justify-start items-center gap-2'>
             <MdEmergency className='text-lg text-rose-600' />
             Emergency
           </div>
 
-          <FaChevronRight className='text-lg' />
+          <FiPhoneCall className='text-lg' />
         </a>
         <hr />
         <a
           href={'tel:108'}
-          className='cursor-pointer  px-2 py-3 text-center w-full flex flex-row justify-between items-center gap-2 rounded-xl'
+          className='cursor-pointer  p-3 text-center w-full flex flex-row justify-between items-center gap-2 rounded-xl'
         >
           <div className='flex flex-row justify-start items-center gap-2'>
             <FaHospital className='text-lg text-amber-600' />
             Hospital
           </div>
 
-          <FaChevronRight className='text-lg' />
+          <FiPhoneCall className='text-lg' />
         </a>
       </div>
 
