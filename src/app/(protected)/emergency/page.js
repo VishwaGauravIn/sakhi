@@ -36,7 +36,7 @@ const Emergency = () => {
 
   const [emergencyData, setEmergencyData] = useState({
     name: '',
-    contect: '',
+    contact: '',
     address: '',
     sex: 'not-set',
     organDonor: 'not-set',
