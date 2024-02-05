@@ -36,6 +36,7 @@ import {
   addDoc,
   collection,
   getDocs,
+  limit,
   orderBy,
   query,
   where,
@@ -89,6 +90,10 @@ export default function Journal() {
   const loadNotes = async (email) => {
     try {
       if (email) {
+        // const querySnapshot = await getDocs(
+        //   query(collection(db, 'journals'),where('owner', '==', email), orderBy('createdAt', 'desc')),
+        //   limit(10)
+        // );
         const q = await query(collection(db, 'journals'),where('owner', '==', email));
         const querySnapshot = await getDocs(q);
         const _temporary_array_for_journals = [];
@@ -159,7 +164,7 @@ export default function Journal() {
     }
   };
 
-  const getDateAndMonthFromDate = (timestamp) => {
+  const getDateAndMonthFromDate = (firebaseTimestamp) => {
     const months = [
       'Jan',
       'Feb',
@@ -175,11 +180,14 @@ export default function Journal() {
       'Dec',
     ];
 
-    const dateObj = new Date(timestamp * 1000); // x1000 to convert from seconds to milliseconds
-    const day = dateObj.getDate();
-    const month = months[dateObj.getMonth()];
-
-    return `${day} ${month}`;
+    if(firebaseTimestamp != 0){
+      const dateObj = firebaseTimestamp.toDate();
+      const day = dateObj.getDate();
+      const month = months[dateObj.getMonth()];
+      return `${day} ${month}`;
+    }else{
+      return '';
+    }
   };
 
   const getLimitedCharacters = (string) => {
@@ -237,7 +245,7 @@ export default function Journal() {
             key={index}
           >
             <div className='col-span-2 text-center h-full grid place-items-center'>
-              {getDateAndMonthFromDate(Number(note.createdAt))}
+              {getDateAndMonthFromDate(note.createdAt)}
             </div>
 
             <div className={`col-span-8 h-full flex flex-wrap items-center border-l-2 border-${getMoodBasedColor(note.mood)}-900/50 pl-2`}>{getLimitedCharacters(note.note)}
@@ -300,7 +308,7 @@ export default function Journal() {
         <DrawerContent>
           <DrawerHeader>
             <DrawerTitle>
-              {getDateAndMonthFromDate(Number(currentViewNote.createdAt))}
+              {getDateAndMonthFromDate(currentViewNote.createdAt)}
             </DrawerTitle>
           </DrawerHeader>
           <p className='whitespace-pre-wrap p-4 max-h-[70vh] overflow-y-auto'>
