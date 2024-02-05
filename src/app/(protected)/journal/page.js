@@ -32,9 +32,11 @@ import {
 } from '@/components/ui/drawer';
 
 import {
+  Timestamp,
   addDoc,
   collection,
   getDocs,
+  orderBy,
   query,
   where,
 } from 'firebase/firestore/lite';
@@ -87,20 +89,18 @@ export default function Journal() {
   const loadNotes = async (email) => {
     try {
       if (email) {
-        const q = await query(
-          collection(db, 'journals'),
-          where('owner', '==', email)
-        );
+        const q = await query(collection(db, 'journals'),where('owner', '==', email));
         const querySnapshot = await getDocs(q);
         const _temporary_array_for_journals = [];
         querySnapshot.forEach((doc) => {
           _temporary_array_for_journals.push({ id: doc.id, ...doc.data() });
         });
+        _temporary_array_for_journals.sort((a, b) => b.createdAt - a.createdAt);
         setNotes(_temporary_array_for_journals);
       }
     } catch (err) {
       //
-    } finally{
+    } finally {
       setPageLoading(false);
     }
   };
@@ -117,7 +117,7 @@ export default function Journal() {
         note: newNote,
         owner: data?.user?.email,
         mood: getTextSentiments(newNote),
-        createdAt: new Date(),
+        createdAt: Timestamp.now(),
       });
 
       if (saveNoteToDB) {
@@ -159,10 +159,26 @@ export default function Journal() {
     }
   };
 
-  const getDateAndMonthFromDate = (date) => {
-    const dateObj = new Date(date);
-    const month = dateObj.toLocaleString('default', { month: 'short' });
+  const getDateAndMonthFromDate = (timestamp) => {
+    const months = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ];
+
+    const dateObj = new Date(timestamp * 1000); // x1000 to convert from seconds to milliseconds
     const day = dateObj.getDate();
+    const month = months[dateObj.getMonth()];
+
     return `${day} ${month}`;
   };
 
@@ -213,29 +229,21 @@ export default function Journal() {
             create one.
           </p>
         )}
-        {notes.map((note, index) => (
-          <button className='w-full' onClick={() => viewNote(note)} key={index}>
-            <div
-              className={`w-full rounded-md flex flex-row mb-4 justify-between items-start p-2 shadow-md gap-1 bg-gradient-to-br from-${getMoodBasedColor(
-                note.mood
-              )}-100 to-${getMoodBasedColor(
-                note.mood
-              )}-200 text-${getMoodBasedColor(note.mood)}-950`}
-            >
-              <div className='max-w-[80%] flex flex-row justify-start items-center'>
-                <div className='font-semibold text-center px-2'>
-                  {getDateAndMonthFromDate(Number(note.createdAt))}
-                </div>
-                <div
-                  className={`ml-2 mr-4 h-10 w-[2px] rounded-[1px] bg-${getMoodBasedColor(
-                    note.mood
-                  )}-900`}
-                ></div>
-                <p className='max-w-[60%] text-left'>
-                  {getLimitedCharacters(note.note)}
-                </p>
-              </div>
 
+        {notes.map((note, index) => (
+          <button
+            className={`w-full grid gap-2 text-left grid-cols-12 rounded-md mb-4 p-2 shadow-md bg-gradient-to-br from-${getMoodBasedColor(note.mood)}-100 to-${getMoodBasedColor(note.mood)}-200 text-${getMoodBasedColor(note.mood)}-950`}
+            onClick={() => viewNote(note)}
+            key={index}
+          >
+            <div className='col-span-2 text-center h-full grid place-items-center'>
+              {getDateAndMonthFromDate(Number(note.createdAt))}
+            </div>
+
+            <div className={`col-span-8 h-full flex flex-wrap items-center border-l-2 border-${getMoodBasedColor(note.mood)}-900/50 pl-2`}>{getLimitedCharacters(note.note)}
+            </div>
+
+            <div className='col-span-2 h-full grid place-items-center'>
               {React.createElement(getMoodBasedEmoji(note.mood), {
                 size: 36,
                 className: `fill-${getMoodBasedColor(note.mood)}-900 `,
@@ -295,7 +303,9 @@ export default function Journal() {
               {getDateAndMonthFromDate(Number(currentViewNote.createdAt))}
             </DrawerTitle>
           </DrawerHeader>
-          <p className='whitespace-pre-wrap p-4 max-h-[70vh] overflow-y-auto'>{currentViewNote.note}</p>
+          <p className='whitespace-pre-wrap p-4 max-h-[70vh] overflow-y-auto'>
+            {currentViewNote.note}
+          </p>
           <DrawerFooter>
             <DrawerClose className='hidden'>
               <button id='close-view-note'>Cancel</button>
