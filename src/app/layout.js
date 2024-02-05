@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
 
         {/* TODO: TEMP */}
         <div className="fixed top-0 left-0 right-0 bottom-0 z-[99999] bg-white hidden sm:flex justify-center items-center">
-          Display Size not allowed
+          Display Size not allowed, Please switch to mobile view.
         </div>
       </body>
       <ToastWrapper />
