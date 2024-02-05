@@ -20,7 +20,7 @@ export default function HeaderNav() {
           <Button
             variant="destructive"
             className="flex gap-1 justify-center items-center py-1 px-4 text-3xl text-red-50 ring-2 ring-red-400 rounded-full bg-[#E04759]"
-            onClick={makeCall}
+            onClick={() => (window.location.href = "tel:100")}
           >
             <IoIosWarning className="text-lg" />
             <MdOutlineSos className="" />
@@ -50,22 +50,23 @@ function UserComponent() {
   );
 }
 
-async function makeCall() {
-  try {
-    // Request permission to use telephony features
-    await navigator.permissions
-      .query({ name: "telephony" })
-      .then((permissionStatus) => {
-        if (permissionStatus.state === "granted") {
-          // If permission is granted, make the call
-          const phoneNumber = "100";
-          window.navigator.telephony.dial(phoneNumber);
-        } else {
-          // Permission not granted
-          toast.error("Telephony permission denied.");
-        }
-      });
-  } catch (error) {
-    console.error("Error making the call:", error);
-  }
-}
+// // Not available in newer browsers
+// async function makeCall() {
+//   try {
+//     // Request permission to use telephony features
+//     await navigator.permissions
+//       .query({ name: "telephony" })
+//       .then((permissionStatus) => {
+//         if (permissionStatus.state === "granted") {
+//           // If permission is granted, make the call
+//           const phoneNumber = "100";
+//           navigator.telephony.dial(phoneNumber);
+//         } else {
+//           // Permission not granted
+//           toast.error("Telephony permission denied.");
+//         }
+//       });
+//   } catch (error) {
+//     console.error("Error making the call:", error);
+//   }
+// }
