@@ -4,6 +4,7 @@ import { SendIcon } from "lucide-react";
 import React from "react";
 import { FaFemale } from "react-icons/fa";
 import { useChat } from "ai/react";
+import { marked } from "marked";
 
 export default function Chat() {
   const { messages, input, handleInputChange, handleSubmit } = useChat({
@@ -71,7 +72,9 @@ function SakhiMessage({ message, key }) {
     <div key={key} className="flex items-end">
       <img src="/logo.png" alt="" className="mr-2 w-6 h-6 self-start mt-3" />
       <div className="rounded-lg bg-pink-100 p-4">
-        <p className="text-sm whitespace-pre-wrap max-w-[80vw]">{message}</p>
+        <p className="text-sm whitespace-pre-wrap max-w-[80vw] sakhi-markdown-message" dangerouslySetInnerHTML={{
+          __html: marked.parse(message),
+        }}></p>
       </div>
     </div>
   );

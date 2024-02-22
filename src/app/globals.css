@@ -33,3 +33,12 @@
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+.sakhi-markdown-message ul{
+  list-style-type: disc;
+  padding-inline-start: 1rem;
+  line-height: 0.7rem;
+}
+.sakhi-markdown-message li{
+  margin: 0;
+}
