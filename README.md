@@ -33,7 +33,7 @@ A platform that not only tracks physical health but also provides mental support
 
 # Product Video
 
-[ADDING SOON]
+https://github.com/VishwaGauravIn/sakhi/assets/96358784/ccc9a38f-ee90-42b5-aa64-302904fb563d
 
 ## Try out Sakhi App
 
