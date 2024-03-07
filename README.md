@@ -42,7 +42,7 @@ https://github.com/VishwaGauravIn/sakhi/assets/96358784/ccc9a38f-ee90-42b5-aa64-
 </a>
 
 #### Note
-While trying the app you might get a warning app isn't verified so Google app verification takes 3-5 business days we have started yesterday so that would warn you to not sign in, you can click on advanced and then proceed
+While trying the app you might get a warning app isn't verified as Google app verification takes 3-5 business days and we have not yet put this on verification, you can click on advanced, and then proceed.
 
 ## Run this locally
 
